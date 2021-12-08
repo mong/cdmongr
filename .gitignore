@@ -1,0 +1,11 @@
+.Rproj.user
+.Rhistory
+.RData
+*.Rproj
+.DS_Store
+*.xlsx
+*~
+*.tar.gz
+docs/
+_qmongr.yml
+*.gz
