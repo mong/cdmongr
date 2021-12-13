@@ -21,10 +21,10 @@ RUN echo "options(repos = c(CRAN = 'https://cran.rstudio.com/'), download.file.m
     && Rscript -e 'remotes::install_version("shiny",upgrade="never", version = "1.7.1")' \
     && mkdir /build_zone
 
-# hadolint ignore=DL3020
-ADD . /build_zone
-WORKDIR /build_zone
-RUN R -e 'remotes::install_local(upgrade="never")' \
-    && rm -rf /build_zone
+WORKDIR /app/R
+
+COPY *.tar.gz .
+RUN R CMD INSTALL --clean ./*.tar.gz && rm ./*.tar.gz
+
 EXPOSE 80
 CMD ["R", "-e", "options(shiny.port=80,shiny.host='0.0.0.0'); cdmongr::run_app()"]
