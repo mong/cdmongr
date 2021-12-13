@@ -23,6 +23,7 @@ RUN echo "options(repos = c(CRAN = 'https://cran.rstudio.com/'), download.file.m
 
 WORKDIR /app/R
 
+# hadolint ignore=DL3010
 COPY *.tar.gz .
 RUN R CMD INSTALL --clean ./*.tar.gz && rm ./*.tar.gz
 
