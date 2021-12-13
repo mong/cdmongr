@@ -3,7 +3,7 @@ Title: Dashboard for Helse Nord RHF
 Version: 0.0.0.9000
 Authors@R: person('AUTHOR_FIRST', 'AUTHOR_LAST', email = 'AUTHOR@MAIL.COM', role = c('cre', 'aut'))
 Description: Presentasjon av 7 grupper med indikatorer.
-License: What license is it under?
+License: file LICENSE
 Imports: 
     attempt,
     config (>= 0.3.1),
