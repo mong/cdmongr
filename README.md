@@ -9,3 +9,4 @@
 
 # cdmongr
 
+En app for å vise "10" indikatorer
