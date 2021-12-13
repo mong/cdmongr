@@ -13,6 +13,7 @@ RUN Rscript -e 'remotes::install_version("spelling",upgrade="never", version = "
 RUN Rscript -e 'remotes::install_version("golem",upgrade="never", version = "0.3.1")'
 RUN Rscript -e 'remotes::install_version("DT",upgrade="never", version = "0.20")'
 RUN mkdir /build_zone
+# hadolint ignore=DL3020
 ADD . /build_zone
 WORKDIR /build_zone
 RUN R -e 'remotes::install_local(upgrade="never")'
