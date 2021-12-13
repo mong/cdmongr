@@ -9,3 +9,4 @@
 docs/
 _qmongr.yml
 *.gz
+*-cdmongr_dockerrun.json

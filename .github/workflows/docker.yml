@@ -1,0 +1,73 @@
+name: Publish Docker image
+on:
+  release:
+    types: [published]
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  push_to_registries:
+    name: Push Docker image to docker hub
+    runs-on: ubuntu-latest
+    env:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      AWS_DEFAULT_REGION: 'eu-west-1'
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v2.3.5
+      - name: R setup
+        uses: r-lib/actions/setup-r@v1
+      - name: Build package
+        run: R CMD build .
+      - name: Lint Dockerfile
+        uses: hadolint/hadolint-action@v1.6.0
+        with:
+          dockerfile: "Dockerfile"
+      - name: Prepare
+        id: docker_meta
+        uses: docker/metadata-action@v3.6.0
+        with:
+          images: hnskde/cdmongr
+          tags: |
+            type=ref,event=branch
+            type=ref,event=pr
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1.6.0
+      - name: Login to DockerHub
+        if: github.event_name != 'pull_request'
+        uses: docker/login-action@v1.10.0
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Push to Docker Hub
+        uses: docker/build-push-action@v2.7.0
+        with:
+          context: .
+          file: ./Dockerfile
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: ${{ steps.docker_meta.outputs.tags }}
+          labels: ${{ steps.docker_meta.outputs.labels }}
+      - name: Set release variables
+        if: github.event_name == 'release'
+        run: |
+          echo "S3Key='prod-cdmongr_dockerrun.json'" >> $GITHUB_ENV
+          echo "env_name=prod-cdmongr" >> $GITHUB_ENV
+          echo "version_label=${GITHUB_REF:10:6}" >> $GITHUB_ENV
+          echo "descr='Release tag deploy'" >> $GITHUB_ENV
+      - name: Set QA variables
+        if: github.event_name == 'push'
+        run: |
+          echo "S3Key='qa-cdmongr_dockerrun.json'" >> $GITHUB_ENV
+          echo "env_name=qa-cdmongr" >> $GITHUB_ENV
+          echo "version_label=${GITHUB_SHA:0:7}" >> $GITHUB_ENV
+          echo "descr='Main branch commits deploy'" >> $GITHUB_ENV
+      - name: Update elasticbeanstalk
+        if: github.event_name != 'pull_request'
+        run: |
+          aws elasticbeanstalk create-application-version --application-name cdmongr --source-bundle S3Bucket="elasticbeanstalk-eu-west-1-247247832514",S3Key=${{ env.S3Key }} --version-label ${{ env.version_label }} --description ${{ env.descr }}
+          aws elasticbeanstalk update-environment --environment-name ${{ env.env_name }} --version-label ${{ env.version_label }}
