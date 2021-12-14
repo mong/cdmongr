@@ -8,6 +8,7 @@ app_ui <- function(request) {
   tagList(
     fluidPage(
       h1("cdmongr"),
+      p(paste0("cdmongr v", installed.packages()["cdmongr", 3])),
       shiny::textOutput("clock")
     )
   )
