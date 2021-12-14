@@ -19,8 +19,8 @@ get_ortopedi_data <- function() {
 }
 
 get_diabetes_data <- function() {
-  ind_1 <- get_data(registry = "diabetes", indicator = "diabetes_voksne_hba1c_ge_75")
-  ind_2 <- get_data(registry = "diabetes", indicator = "diabetes_voksne_hba1c_le_53")
+  ind_1 <- get_data(registry = "diabetes_voksne", indicator = "diabetes_voksne_hba1c_ge_75")
+  ind_2 <- get_data(registry = "diabetes_voksne", indicator = "diabetes_voksne_hba1c_le_53")
   return(rbind(ind_1, ind_2))
 }
 
