@@ -6,7 +6,10 @@ Description: Presentasjon av 7 grupper med indikatorer.
 License: file LICENSE
 Imports: 
     methods,
-    shiny (>= 1.7.1)
+    shiny (>= 1.7.1),
+    dplyr,
+    magrittr,
+    jsonlite
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.1.2
