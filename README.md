@@ -9,4 +9,4 @@
 
 # cdmongr
 
-En app for å vise "10" indikatorer
+[En app](https://qa-cdmongr.skde.org/) for å vise "10" indikatorer
