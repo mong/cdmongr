@@ -15,23 +15,23 @@ app_ui <- function(request) {
                                shinyjs::useShinyjs(),
                                shinyalert::useShinyalert(),
                                h4("Kvalitetsindikatorer fra medisinske kvalitetsregistre innen muskel og skjelett"),
-                               leddprotese_UI(id="leddprotese_id")
+                               kvalind_UI(id="leddprotese_id")
                ),
                shiny::tabPanel("Hjerteinfarkt",
                                h4("Kvalitetsindikatorer fra medisinske kvalitetsregistre innen hjerteinfarkt"),
-                               leddprotese_UI(id="hjerte_id")
+                               kvalind_UI(id="hjerte_id")
                ),
                shiny::tabPanel("Traumebehandling",
                                h4("Kvalitetsindikatorer fra medisinske kvalitetsregistre innen traume"),
-                               leddprotese_UI(id="traume_id")
+                               kvalind_UI(id="traume_id")
                ),
                shiny::tabPanel("Diabetes",
                                h4("Kvalitetsindikatorer fra medisinske kvalitetsregistre innen diabetes"),
-                               leddprotese_UI(id="diabetes_id")
+                               kvalind_UI(id="diabetes_id")
                ),
                shiny::tabPanel("Hjerneslag",
                                h4("Kvalitetsindikatorer fra medisinske kvalitetsregistre innen hjerneslag"),
-                               leddprotese_UI(id="hjerne_id")
+                               kvalind_UI(id="hjerne_id")
                )
     )
   )
