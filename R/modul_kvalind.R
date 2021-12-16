@@ -6,21 +6,26 @@
 kvalind_UI <- function(id){
   ns <- shiny::NS(id)
   fluidRow(
-    column(6,
-           uiOutput(outputId = ns("valgtInd")),
-           selectInput(inputId = ns("plotType"), label = "Velg plott",
-                       choices = c("Spagettiplott", "Abacusplott",
-                                   "Panelplot"), multiple = F)
-    ),
-    column(6,
-           uiOutput(outputId = ns("valgtShus"))
+    column(12,
+           fluidRow(
+             column(6,
+                    uiOutput(outputId = ns("valgtInd")),
+                    selectInput(inputId = ns("plotType"), label = "Velg plott",
+                                choices = c("Spagettiplott", "Abacusplott",
+                                            "Panelplott"), multiple = F)
+             ),
+             column(6,
+                    uiOutput(outputId = ns("valgtShus"))
+             )
+           ),
+           plotOutput(ns("plot"))
     )
   )
 }
 
 kvalind_server <- function(input, output, session, ind_info, ind_navn, shus_valg){
   ns <- session$ns
-  names(ind_navn) <- ind_info$title[match(ind_navn, ind_info$id)]
+  names(ind_navn) <- ind_info$title[match(paste0("cd_", ind_navn), ind_info$id)]
   
   output$valgtInd <- renderUI({
     if (!is.null(ind_navn)) {
