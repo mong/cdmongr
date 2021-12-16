@@ -16,6 +16,11 @@ app_server <- function(input, output, session) {
 
   shus_valg <- shus$orgnr[shus$rhf_orgnr == 883658752]
   names(shus_valg) <- shus$short_name[match(shus_valg, shus$orgnr)]
+  
+  forbered_plot <- function(kvaldata, indikator, shus_valg) {
+    plotdata <- kvaldata[kvaldata$orgnr %in% shus_valg & kvaldata$ind_id == indikator, ] %>% dplyr::group_by(unit_name, year) %>% 
+      dplyr::summarise(andel = sum(var)/sum(denominator)*100)
+  }
 
   callModule(kvalind_server, "leddprotese_id", ind_info = ind,
              ind_navn = c("hoftebrudd_protdislokbrudd", "hoftebrudd_stammefiks",
