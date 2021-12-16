@@ -11,7 +11,7 @@ app_ui <- function(request) {
       shiny::tags$script(src = "www/iframeResizer.contentWindow.min.js")
     ),
     navbarPage(id = "cdmongr_app_id",
-               title = "SKDE",
+               title = "",
                # Heartbeat outside app, to avoid app to die after 60 sec on AWS
                shiny::tags$div(style = "position: absolute; top: -100px;",
                                shiny::textOutput("heartbeat")
