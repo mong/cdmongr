@@ -5,6 +5,7 @@ Authors@R: person('AUTHOR_FIRST', 'AUTHOR_LAST', email = 'AUTHOR@MAIL.COM', role
 Description: Presentasjon av 7 grupper med indikatorer.
 License: file LICENSE
 Imports: 
+    rlang,
     methods,
     shiny (>= 1.7.1),
     shinyjs,
