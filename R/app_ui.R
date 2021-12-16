@@ -37,7 +37,13 @@ app_ui <- function(request) {
                shiny::tabPanel("Hjerneslag",
                                h4("Kvalitetsindikatorer fra medisinske kvalitetsregistre innen hjerneslag"),
                                kvalind_ui(id = "hjerne_id")
-               )
+               ),
+               shiny::tabPanel("Revurdering",
+                               h4("Tjenester med usikker helsegevinst")
+                               ),
+               shiny::tabPanel("Innleie",
+                               h4("Innleie av helsepersonell")
+                               )
     )
   )
 }
