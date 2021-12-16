@@ -11,7 +11,7 @@ kvalind_ui <- function(id) {
              column(6,
                     uiOutput(outputId = ns("valgtInd")),
                     selectInput(inputId = ns("plotType"), label = "Velg plott",
-                                choices = c("Spagettiplott", "Abacusplott",
+                                choices = c("Tidstrend", "Abacusplott",
                                             "Panelplott"), multiple = F)
              ),
              column(6,
