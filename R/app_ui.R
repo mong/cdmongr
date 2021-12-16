@@ -6,7 +6,10 @@
 #' @noRd
 app_ui <- function(request) {
   tagList(
-
+    shiny::tags$head(
+      # Make it fully scale inside iframe
+      shiny::tags$script(src = "www/iframeResizer.contentWindow.min.js")
+    ),
     navbarPage(id = "cdmongr_app_id",
                title = "SKDE",
                # Heartbeat outside app, to avoid app to die after 60 sec on AWS
