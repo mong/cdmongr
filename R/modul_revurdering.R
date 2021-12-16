@@ -6,18 +6,24 @@
 revurdering_ui <- function(id) {
   ns <- shiny::NS(id)
   fluidRow(
-    column(6,
-           uiOutput(outputId = ns("valgtInd")),
-           selectInput(inputId = ns("plotType"), label = "Velg plott",
-                       choices = c("Panelplot", "Abacusplott",
-                                   "Spagettiplott"), multiple = F),
-           shiny::uiOutput(outputId = ns("figure"))
-    ),
-    column(6,
-           uiOutput(outputId = ns("valgtShus"))
+    column(12,
+      fluidRow(
+        column(6,
+          uiOutput(outputId = ns("valgtInd")),
+          selectInput(inputId = ns("plotType"), label = "Velg plott",
+                      choices = c("Panelplot", "Abacusplott",
+                                  "Spagettiplott"),
+                      multiple = F
+                      )
+          ),
+        column(6,
+          uiOutput(outputId = ns("valgtShus"))
+          )
+        ),
+      shiny::uiOutput(outputId = ns("figure"))
+      )
     )
-  )
-}
+  }
 
 revurdering_server <- function(input, output, session) {
   ns <- session$ns
@@ -36,6 +42,6 @@ revurdering_server <- function(input, output, session) {
   })
 
   output$figure <- shiny::renderUI({
-    shiny::HTML("<img src='www/panel.png' alt='Panel plot'>")
+    shiny::HTML("<img src='www/panel.png' alt='Panel plot' width='100%'>")
   })
 }
