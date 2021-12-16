@@ -8,9 +8,11 @@ app_ui <- function(request) {
   tagList(
 
     navbarPage(id = "cdmongr_app_id",
-
                title = "SKDE",
-               
+               # Heartbeat outside app, to avoid app to die after 60 sec on AWS
+               shiny::tags$div(style = "position: absolute; top: -100px;",
+                               shiny::textOutput("heartbeat")
+               ),
                shiny::tabPanel("Leddprotese",
                                shinyjs::useShinyjs(),
                                shinyalert::useShinyalert(),
