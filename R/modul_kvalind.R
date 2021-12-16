@@ -3,7 +3,7 @@
 # Kun til bruk i Shiny
 # returner Modulfunksjoner
 
-kvalind_UI <- function(id){
+kvalind_ui <- function(id) {
   ns <- shiny::NS(id)
   fluidRow(
     column(6,
@@ -19,7 +19,8 @@ kvalind_UI <- function(id){
   )
 }
 
-kvalind_server <- function(input, output, session, ind_info, ind_navn, shus_valg){
+#' @importFrom rlang .data
+kvalind_server <- function(input, output, session, ind_info, ind_navn, shus_valg) {
   ns <- session$ns
   names(ind_navn) <- ind_info$title[match(ind_navn, ind_info$id)]
 
@@ -44,20 +45,14 @@ kvalind_server <- function(input, output, session, ind_info, ind_navn, shus_valg
                   choices = ind_navn, multiple = FALSE)
     }
   })
-  
+
   output$valgtShus <- renderUI({
     if (!is.null(shus_valg)) {
       selectInput(inputId = "valgtShus_verdi", label = "Velg sykehus",
                   choices = shus_valg, multiple = TRUE)
     }
   })
-  
-  output$showdata <- shiny::renderDataTable(all_data %>% dplyr::filter(ind_id %in% input$valgtInd_verdi))
+
+  output$showdata <- shiny::renderDataTable(all_data %>%
+                                            dplyr::filter(.data[["ind_id"]] %in% input$valgtInd_verdi))
 }
-
-
-
-
-
-
-
