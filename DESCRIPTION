@@ -7,6 +7,8 @@ License: file LICENSE
 Imports: 
     methods,
     shiny (>= 1.7.1),
+    shinyjs,
+    shinyalert,
     dplyr,
     magrittr,
     jsonlite
