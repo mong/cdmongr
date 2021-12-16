@@ -9,5 +9,5 @@
 forbered_plot <- function(kvaldata, indikator, shus_valg) {
   plotdata <- kvaldata[kvaldata$orgnr %in% shus_valg & kvaldata$ind_id == indikator, ] %>% 
     dplyr::group_by(unit_name, year) %>% 
-    dplyr::summarise(andel = sum(var)/sum(denominator)*100)
+    dplyr::summarise(andel = sum(var)*100)
 }

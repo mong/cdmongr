@@ -26,8 +26,8 @@ app_server <- function(input, output, session) {
   callModule(kvalind_server, "traume_id", ind_info = ind,
              ind_navn = c("traume_rontgen_bekken", "traume_rontgen_thorax"), shus_valg = shus_valg)
   callModule(kvalind_server, "diabetes_id", ind_info = ind,
-             ind_navn = c("diabetes_voksne_grad_pros_aarsk", "diabetes_voksne_hba1c_ge_75",
-                          "diabetes_voksne_hba1c_le_53"), shus_valg = shus_valg)
+             ind_navn = c( "diabetes_voksne_hba1c_le_53", "diabetes_voksne_hba1c_ge_75",
+                           "diabetes_voksne_grad_pros_aarsk"), shus_valg = shus_valg)
   callModule(kvalind_server, "hjerne_id", ind_info = ind,
              ind_navn = c("hjerneslag_beh_tromb", "hjerneslag_rapport_3mnd"), shus_valg = shus_valg)
 
