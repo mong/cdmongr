@@ -17,7 +17,7 @@ WORKDIR /app/R
 COPY *.tar.gz .
 
 # basic R functionality
-RUN R -e 'install.packages(c("methods", "shiny", "shinyjs", "shinyalert", "dplyr", "magrittr", "jsonlite"), repos="https://cloud.r-project.org/")' \
+RUN R -e 'install.packages(c("rlang", "methods", "shiny", "shinyjs", "shinyalert", "dplyr", "magrittr", "jsonlite"), repos="https://cloud.r-project.org/")' \
     && R CMD INSTALL --clean ./*.tar.gz && rm ./*.tar.gz
 
 EXPOSE 80

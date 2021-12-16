@@ -7,3 +7,4 @@ $run_dev.*
 ^\.github$
 ^Dockerfile$
 ^\.dockerignore$
+^\.lintr$
