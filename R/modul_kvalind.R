@@ -66,7 +66,7 @@ kvalind_server <- function(input, output, session, ind_info, ind_navn, shus_valg
       plotly::highlight(on = "plotly_hover")
   )
 
-
-  output$showdata <- shiny::renderDataTable(all_data %>%
-                                              dplyr::filter(.data[["ind_id"]] %in% input$valgtInd_verdi))
+#
+#   output$showdata <- shiny::renderDataTable(all_data %>%
+#                                               dplyr::filter(.data[["ind_id"]] %in% input$valgtInd_verdi))
 }
