@@ -20,7 +20,7 @@ kvalind_UI <- function(id){
 
 kvalind_server <- function(input, output, session, ind_info, ind_navn, shus_valg){
   ns <- session$ns
-  names(ind_navn) <- ind_info$title[match(paste0("cd_", ind_navn), ind_info$id)]
+  names(ind_navn) <- ind_info$title[match(ind_navn, ind_info$id)]
   
   output$valgtInd <- renderUI({
     if (!is.null(ind_navn)) {
