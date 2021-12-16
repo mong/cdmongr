@@ -6,7 +6,6 @@
 #' @noRd
 app_server <- function( input, output, session ) {
   
-  # orto <- cdmongr::get_ortopedi_data()
   ind <- read.csv(system.file("app/www/indikatorer.csv", package = "cdmongr"))
   shus <- read.csv(system.file("app/www/sykehus.csv", package = "cdmongr"))
   hf <- read.csv(system.file("app/www/hf.csv", package = "cdmongr"))
