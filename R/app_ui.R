@@ -39,11 +39,11 @@ app_ui <- function(request) {
                                kvalind_ui(id = "hjerne_id")
                ),
                shiny::tabPanel("Revurdering",
-                               h4("Tjenester med usikker helsegevinst")
+                               h4("Tjenester med usikker helsegevinst"),
+                               revurdering_ui(id = "revurdering_id")
                                ),
                shiny::tabPanel("Innleie",
-                               h4("Innleie av helsepersonell")
-                               )
+                               h4("Innleie av helsepersonell")                               )
     )
   )
 }

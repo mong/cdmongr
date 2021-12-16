@@ -31,6 +31,7 @@ app_server <- function(input, output, session) {
   callModule(kvalind_server, "hjerne_id", ind_info = ind,
              ind_navn = c("hjerneslag_beh_tromb", "hjerneslag_rapport_3mnd"), shus_valg = shus_valg)
 
+  callModule(revurdering_server, "revurdering_id")
   # Heartbeat every 5 seconds, to avoid app to die when user is inactive.
     output$heartbeat <- renderText({
       invalidateLater(5000)
