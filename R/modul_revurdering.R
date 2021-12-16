@@ -36,6 +36,6 @@ revurdering_server <- function(input, output, session) {
   })
 
   output$figure <- shiny::renderUI({
-    shiny::HTML("<img src='panel.png' alt='Panel plot'>")
+    shiny::HTML("<img src='www/panel.png' alt='Panel plot'>")
   })
 }
