@@ -6,6 +6,13 @@
 \usage{
 forbered_plot(kvaldata, indikator, shus_valg)
 }
+\arguments{
+\item{kvaldata}{Original data}
+
+\item{indikator}{Indicator}
+
+\item{shus_valg}{Hospital}
+}
 \description{
 Forberd data for grafisk fremstilling
 }

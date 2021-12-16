@@ -1,5 +1,9 @@
 #' Forberd data for grafisk fremstilling
 #' 
+#' @param kvaldata Original data
+#' @param indikator Indicator
+#' @param shus_valg Hospital
+#'
 #' @export
 #' 
 forbered_plot <- function(kvaldata, indikator, shus_valg) {
