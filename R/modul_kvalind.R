@@ -57,10 +57,14 @@ kvalind_server <- function(input, output, session, ind_info, ind_navn, shus_valg
                   choices = shus_valg, multiple = TRUE, selected = shus_valg)
     }
   })
+  
+  plotdata <- reactive({
+    forbered_plot(kvaldata=all_data, indikator = input$valgtInd_verdi,
+                  shus_valg=if (!is.null(input$valgtShus_verdi)) {input$valgtShus_verdi} else {shus_valg})
+  })
 
   output$plot <- plotly::renderPlotly(
-    forbered_plot(kvaldata=all_data, indikator = input$valgtInd_verdi,
-                  shus_valg=if (!is.null(input$valgtShus_verdi)) {input$valgtShus_verdi} else {shus_valg}) %>%
+    plotdata() %>%
       plotly::highlight_key(~unit_name) %>%
       plotly::plot_ly(x=~year, y=~andel, color=~unit_name, type="scatter", mode="lines") %>%
       plotly::layout(xaxis=list(tickvals=~year,ticktext=~year)) %>%
