@@ -18,7 +18,6 @@ kvalind_ui <- function(id) {
                     uiOutput(outputId = ns("valgtShus"))
              )
            ),
-           # shiny::dataTableOutput(outputId = ns("showdata"))
            plotly::plotlyOutput(ns('plot'))
     )
   )
@@ -53,7 +52,7 @@ kvalind_server <- function(input, output, session, ind_info, ind_navn, shus_valg
 
   output$valgtShus <- renderUI({
     if (!is.null(shus_valg)) {
-      selectInput(inputId = "valgtShus_verdi", label = "Velg sykehus",
+      selectInput(inputId = ns("valgtShus_verdi"), label = "Velg sykehus",
                   choices = shus_valg, multiple = TRUE, selected = shus_valg)
     }
   })
@@ -66,8 +65,4 @@ kvalind_server <- function(input, output, session, ind_info, ind_navn, shus_valg
       plotly::layout(xaxis=list(tickvals=~year,ticktext=~year)) %>%
       plotly::highlight(on = "plotly_hover")
   )
-
-#
-#   output$showdata <- shiny::renderDataTable(all_data %>%
-#                                               dplyr::filter(.data[["ind_id"]] %in% input$valgtInd_verdi))
 }
