@@ -9,4 +9,11 @@
 
 # cdmongr
 
-[En app](https://qa-cdmongr.skde.org/) for å vise "10" indikatorer
+[En app](https://qa-cdmongr.skde.org/) for å vise "10" indikatorer.
+
+Kjøre appen lokalt ved bruk av `Docker`:
+
+```bash
+docker build -t some_name .
+docker run -p 80:80 some_name
+```
